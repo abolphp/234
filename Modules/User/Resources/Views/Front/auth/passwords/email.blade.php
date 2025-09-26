@@ -1,4 +1,4 @@
-@extends('resources.views.layouts.app')
+@extends('User::Front.layouts.app')
 
 @section('content')
     <div class="container">

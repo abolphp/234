@@ -10,7 +10,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -27,10 +26,10 @@
 
                         <div class="row mb-3">
 
-                            <label for="phone_number" class="col-md-4 col-form-label text-md-end">{{ __('Phone Number') }}</label>
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-end">{{ __('Mobile') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone_number" type="number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" required autocomplete="phone_number">
+                                <input id="mobile" value="{{old("mobile")}}" type="number" class="form-control @error('mobile') is-invalid @enderror" name="mobile" required autocomplete="mobile">
 
                                 @error('phone_number')
                                 <span class="invalid-feedback" role="alert">
