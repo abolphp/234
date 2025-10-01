@@ -1,56 +1,67 @@
 <?php
 
-namespace Modules\Category\Http\Controllers;
+namespace Modules\Category\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Category\app\Http\Requests\CategoryRequest;
+use Modules\Category\app\Models\Category;
+use Modules\Category\app\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public $repository;
+
+    public function __construct(CategoryRepository $repository){
+        $this->repository = $repository;
+    }
     public function index()
     {
-        return view('category::index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('category::create');
+        $Categories = $this->repository->all();
+        return response()->json([
+            'data' => $Categories,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {}
+    public function store(CategoryRequest $request) {
+        $Category = $this->repository->store($request);
+        return response()->json([
+            'message' => 'Category created successfully',
+            'data' => $Category,
+        ]);
+    }
 
     /**
      * Show the specified resource.
      */
     public function show($id)
     {
-        return view('category::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('category::edit');
+        $Category = $this->repository->FindById($id);
+        return response()->json([
+            'data' => $Category,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {}
+    public function update($id , CategoryRequest $request) {
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
+        $Category = $this->repository->FindById($id);
+        $this->repository->update($request, $id);
+        return response()->json([
+            'message' => 'Category updated successfully',
+            'NewData' => $Category,
+        ]);
+    }
+    public function destroy($id){
+        Category::destroy($id);
+        return response()->json([
+            'message' => 'Category deleted successfully',
+        ]);
+    }
 }
