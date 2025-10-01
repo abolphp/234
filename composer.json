@@ -8,10 +8,10 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6",
-        "nwidart/laravel-modules": "^12.0",
-        "ext-http": "*"
+        "nwidart/laravel-modules": "^12.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -25,8 +25,9 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Modules\\Course\\": "Modules/Course/app/",
             "Modules\\User\\": "Modules/User/",
+            "Modules\\Admin\\": "Modules/Admin/",
+            "Modules\\Category\\": "Modules/Category/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
