@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\RolePermission\Http\Controllers\RolePermissionController;
+use Modules\RolePermission\app\Http\Controllers\RolePermissionController;
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('rolepermissions', RolePermissionController::class)->names('rolepermission');
-});
+Route::apiResource('RolePermissions', RolePermissionController::class)->names('rolepermission');
+
